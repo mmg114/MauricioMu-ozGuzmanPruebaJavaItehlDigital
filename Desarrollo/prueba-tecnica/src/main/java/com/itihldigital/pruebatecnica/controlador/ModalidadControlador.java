@@ -23,49 +23,42 @@ import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, })
 @RequestMapping("/modalidad")
-@ApiOperation(value="Creacion de nuevo curso", notes="")
+@ApiOperation(value = "Creacion de nuevo curso", notes = "")
 @Slf4j
 public class ModalidadControlador {
 
-	
-	
-	
 	@Autowired
 	private IModalidadService modalidadService;
 
-	@ApiResponses(value = { 
-            @ApiResponse(code = 200, message = "Respuesta Satisfactoria",response = GenericResponse.class),
-            @ApiResponse(code = 400, message = "Error en el proceso", response = GenericResponse.class),
-            @ApiResponse(code = 500, message = "Internal server error") 
-        }
-)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Respuesta Satisfactoria", response = GenericResponse.class),
+			@ApiResponse(code = 400, message = "Error en el proceso", response = GenericResponse.class),
+			@ApiResponse(code = 500, message = "Internal server error") })
 	@GetMapping()
 	public ResponseEntity<?> consultar() throws Exception {
-
-
 
 		GenericResponse<Modalidad> genericResponse = new GenericResponse<Modalidad>();
 		try {
 
-		
-
 			genericResponse.setCodigo(Constantes.HTTP_OK);
 			genericResponse.setMensaje("Consulta Exitosa exito");
-			genericResponse.setLista( modalidadService.findAll());
+			genericResponse.setLista(modalidadService.findAll());
 
 		} catch (Exception e) {
 
 			genericResponse.setCodigo(Constantes.HTTP_BAD_REQUEST);
 			genericResponse.setMensaje(e.getMessage());
 
-
 		}
 		return ResponseEntity.ok().body(genericResponse);
 	}
-	
-	
+
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Respuesta Satisfactoria", response = GenericResponse.class),
+			@ApiResponse(code = 400, message = "Error en el proceso", response = GenericResponse.class),
+			@ApiResponse(code = 500, message = "Internal server error") })
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> crear(@Validated @RequestBody Modalidad modalidad) throws Exception {
 		log.debug("Creando Modalidad: {}", modalidad);

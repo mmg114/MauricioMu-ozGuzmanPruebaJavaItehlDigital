@@ -26,21 +26,19 @@ import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@CrossOrigin(origins = "*", methods = { RequestMethod.PUT, RequestMethod.POST ,RequestMethod.GET})
+@CrossOrigin(origins = "*", methods = { RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET })
 @RequestMapping("/curso")
 @Slf4j
-@ApiOperation(value="Creacion de nuevo curso", notes="")
+@ApiOperation(value = "Creacion de nuevo curso", notes = "")
 public class CursoControlador {
 
 	@Autowired
 	private ICursoService cursoService;
 
-	@ApiResponses(value = { 
-            @ApiResponse(code = 200, message = "Respuesta Satisfactoria",response = GenericResponse.class),
-            @ApiResponse(code = 400, message = "Error en el proceso", response = GenericResponse.class),
-            @ApiResponse(code = 500, message = "Internal server error") 
-        }
-)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Respuesta Satisfactoria", response = GenericResponse.class),
+			@ApiResponse(code = 400, message = "Error en el proceso", response = GenericResponse.class),
+			@ApiResponse(code = 500, message = "Internal server error") })
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> crear(@Validated @RequestBody Curso curso) throws Exception {
 		log.debug("Creando Curso: {}", curso);
@@ -67,6 +65,10 @@ public class CursoControlador {
 		return ResponseEntity.ok().body(genericResponse);
 	}
 
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Respuesta Satisfactoria", response = GenericResponse.class),
+			@ApiResponse(code = 400, message = "Error en el proceso", response = GenericResponse.class),
+			@ApiResponse(code = 500, message = "Internal server error") })
 	@PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> actualizar(@Validated @RequestBody Curso curso) throws Exception {
 		log.debug("Actualiando Curso: {}", curso);
@@ -90,8 +92,11 @@ public class CursoControlador {
 		}
 		return ResponseEntity.ok().body(genericResponse);
 	}
-	
-	
+
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Respuesta Satisfactoria", response = GenericResponse.class),
+			@ApiResponse(code = 400, message = "Error en el proceso", response = GenericResponse.class),
+			@ApiResponse(code = 500, message = "Internal server error") })
 	@PostMapping(path = ("/buscarpormodelo"), produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> buscarpormodelo(@Validated @RequestBody Modalidad modalidad) throws Exception {
 		log.debug("Actualiando Curso: {}", modalidad);

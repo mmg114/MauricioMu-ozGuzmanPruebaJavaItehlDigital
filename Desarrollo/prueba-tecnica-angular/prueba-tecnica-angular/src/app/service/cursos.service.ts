@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { modalidad } from '../model/modalidad';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,13 @@ export class CursosService {
   };
 
   constructor(public httpClient:HttpClient) {
-    this.url = environment.URL_SERVICIOS + 'modalidad';
+    this.url = environment.URL_SERVICIOS + 'curso';
   }
 
-  public consultarModalidades():Observable<any>{
-    return this.httpClient.get(this.url,this.httpOptions);
+
+  public consultarCursosPorModalidad(modalidad:modalidad):Observable<any>{
+    debugger
+    return this.httpClient.post(this.url+'/buscarpormodelo',modalidad,this.httpOptions);
   }
+
 }

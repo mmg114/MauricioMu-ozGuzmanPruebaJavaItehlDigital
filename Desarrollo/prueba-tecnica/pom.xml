@@ -16,7 +16,7 @@
 	<description>Proyecto prueba tecnica</description>
 	<properties>
 		<java.version>11</java.version>
-			<org.projectlombok.version>1.18.16</org.projectlombok.version>
+		<org.projectlombok.version>1.18.16</org.projectlombok.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -63,7 +63,7 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-		
+
 
 
 	</dependencies>
@@ -86,10 +86,10 @@
 							<artifactId>lombok</artifactId>
 							<version>${org.projectlombok.version}</version>
 						</path>
-						
+
 						<!-- other annotation processors -->
 					</annotationProcessorPaths>
-					
+
 				</configuration>
 			</plugin>
 		</plugins>

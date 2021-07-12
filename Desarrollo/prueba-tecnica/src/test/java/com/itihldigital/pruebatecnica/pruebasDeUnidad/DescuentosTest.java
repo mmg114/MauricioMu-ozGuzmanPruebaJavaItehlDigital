@@ -17,7 +17,6 @@ import org.mockito.stubbing.Answer;
 
 import com.itihldigital.pruebatecnica.negocio.DescuentoService;
 import com.itihldigital.pruebatecnica.reporsitorio.modelo.Descuento;
-import com.itihldigital.pruebatecnica.reporsitorio.modelo.Modalidad;
 
 @ExtendWith(MockitoExtension.class)
 public class DescuentosTest {

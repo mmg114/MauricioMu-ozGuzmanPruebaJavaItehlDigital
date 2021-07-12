@@ -19,18 +19,25 @@ import com.itihldigital.pruebatecnica.reporsitorio.modelo.Descuento;
 import com.itihldigital.pruebatecnica.utilidades.Constantes;
 import com.itihldigital.pruebatecnica.utilidades.GenericResponse;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.POST,RequestMethod.GET})
+@CrossOrigin(origins = "*", methods = { RequestMethod.POST, RequestMethod.GET })
 @RequestMapping("/descuento")
+@ApiOperation(value = "Descuentos de nuevo curso", notes = "")
 public class DescuentoControlador {
 
 	@Autowired
 	private IDescuentoService descuentosServices;
-	
-	
+
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Respuesta Satisfactoria", response = GenericResponse.class),
+			@ApiResponse(code = 400, message = "Error en el proceso", response = GenericResponse.class),
+			@ApiResponse(code = 500, message = "Internal server error") })
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> saveDescuento(@Validated @RequestBody Descuento descuento) throws Exception {
-
 
 		Descuento descuentoRespuesta = null;
 
@@ -48,11 +55,13 @@ public class DescuentoControlador {
 		}
 		return ResponseEntity.ok().body(genericResponse);
 	}
-	
-	
+
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Respuesta Satisfactoria", response = GenericResponse.class),
+			@ApiResponse(code = 400, message = "Error en el proceso", response = GenericResponse.class),
+			@ApiResponse(code = 500, message = "Internal server error") })
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> findByAll() throws Exception {
-
 
 		List<Descuento> descuentoRespuesta = null;
 
@@ -63,15 +72,12 @@ public class DescuentoControlador {
 
 			genericResponse.setCodigo(Constantes.HTTP_OK);
 			genericResponse.setLista(descuentoRespuesta);
-		
+
 		} catch (Exception e) {
 			genericResponse.setCodigo(Constantes.HTTP_BAD_REQUEST);
 			genericResponse.setMensaje(e.getMessage());
 		}
 		return ResponseEntity.ok().body(genericResponse);
 	}
-	
-	
-	
-	
+
 }
